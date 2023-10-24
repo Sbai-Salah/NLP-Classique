@@ -1,0 +1,89 @@
+after preprocessing we generaly apply vectorization, which is just another word to say word embedding
+(= representation vectorielle = representation distributionnelle )
+
+example : 
+je me nomme Salah
+je m'appelle Salah.
+Context partager : Je me , Salah
+in this case : nomme = m'appelle
+portent une meme signification semantique.
+
+-> One hot encoding : 
+objectif :
+representer les mots contenus dans un texe par des nombres que les machines savent interpreter.
+
+Corpus : 
+- Marakech est connue par sa place jamaa-el-fna et son climat chaud et sec.
+- Le numerique est en train de transformer le monde.
+
+chaque mot du corpus est represente par un vecteur de longeur V de la forme : 
+V= { 0, ...0, 1, 0,...0}
+
+in our later example : 
+V = { nommer, appelle, Salah }
+  = { [1, 0, 0], [0,1,0], [0,0,1]}
+donc les mots sont ainsi plonge dans un espace de dimension R^v
+
+dans l'exemple du Marakech on a v = 19.
+Mais dans la figure on visualise juste un espace de dimension 3.
+
+le one hot encoding presente plusieurs problemes : 
+1- ne preserve pas les proximites possibles entre les mots. 
+Normalement la proximite de deux vecteurs se traduit par le produit scalaire entre ces deux vecteurs.
+
+Dans le cas de 1-hot-encoding, l'angle est toujours 90 deg pour n'importe quel couple de vecteurs
+et la longeur ( ou norme) de chaque vecteur est egale 1.
+
+2- Lorsque V est tres grand, la dimensionalite des vecteurs obtenus sera du meme ordre R^v, Ainsi, 
+Google propose dans un dataset un vocabulaire de 3 millions de mots. Le traitement des mots sera alors 
+tres couteux en temps de calcul comme en memoire allouee.
+
+3- cette approche qui privilegie une representation atomique des mots produit un espaec des semantiques
+discret. Il suffit de conciderer les couleurs pour se rendre compte que cette representation contredit
+l'intuition. Entre le noir et le blanc on a un continuum de niveaux de gris.
+
+---> Word2Vec : algorithm propose par Google en 2013 ( Mikolov et son equipe )
+
+se base sur un reseau de neurons pour effectuer du word embedding a partir d'un corpus.
+Un mot central w_t est fortement correle aux mots qui constituent son contexte; ici ceux qui se trouvent
+entre w_(t-m) et w_t et puis entre w_t et ... pour un entier m fixe au depart
+...
+
+example :
+Je me nomme Salah
+nomme : mot central : w_t
+to understand the contexte we take the words that occur : 
+me : w_(t-1)
+Salah : w_(t+1)
+
+donc : Contexte W_t = { (me, Salah)}
+
+
+--> Ilustration of the word2Vec
+
+- Les mots qui apparaissent dans des contextes similaires auront des vecteurs similaires, refletant la grande correlation
+de leurs usages.
+
+- Hypothese distributionnelle : 
+
+- Variantes de word2Vec : 
+1- Skip gram 
+2- CBOW
+
+
+=========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

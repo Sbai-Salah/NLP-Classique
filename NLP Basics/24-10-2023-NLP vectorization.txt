@@ -1,0 +1,17 @@
+Principe du word embedding : 
+
+1-hot encoding(sparse) ---> word embeding(dense)
+                R^V  --------> R^d
+
+algorithme word2vec : deux variantes : skip-gram and cbow
+we're work with skip-gram : non-supervised learning for a neural network to realise the word embedding.
+learning is done using a large amout of textual data like wikipedia.
+
+------- illustration---------
+
+LOOT OF TEXTS --> Wordembeding ( skip gram ) --> trained model =>
+
+---------------------------
+there is an hyper-parameter called m, if m=1 we will take one word before and after the context.
+
+
